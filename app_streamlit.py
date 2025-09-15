@@ -38,16 +38,14 @@ E_Civil_options=['Casado','Divorciado','Soltero']
 E_Civil=''
 Educacion_options=['No.Sup','Sup.Incomp','Sup.Comp']
 Educacion=''
-Prioridad_options=['Si','No']
-Prioridad=''
 Lic_Conducir_options=['Si','No']
 Lic_Conducir =''
-Edad=0.0
+Edad=0.0000
 Tarjetas=0
 Deuda=0
 Saldo=0
 CrediScore=0
-años_empleo=0.0
+años_empleo=0.0000
 Ingresos=0
 
 
@@ -56,18 +54,17 @@ error_flag = False
 
 # Reset inputs function
 def reset_inputs():
-    global Sexo, E_Civil, Educacion, Prioridad, Lic_Conducir,Edad,Tarjetas,Deuda,Saldo,CrediScore,años_empleo,Ingresos, error_flag
+    global Sexo, E_Civil,Educacion,Lic_Conducir,Edad,Tarjetas,Deuda,Saldo,CrediScore,años_empleo,Ingresos, error_flag
     Sexo =''
     E_Civil=''
     Educacion=''
-    Prioridad=''
     Lic_Conducir =''
-    Edad=0.0
+    Edad=0.0000
     Tarjetas=0
     Deuda=0
     Saldo=0
     CrediScore=0
-    años_empleo=0.0
+    años_empleo=0.0000
     Ingresos=0
     error_flag = False
 
@@ -76,8 +73,8 @@ reset_inputs()
 # -----------------------------------------------------------------------------------------------
 
 # ------------------------Título centrado-------------------------------------------------
-st.title("Modelo Predictivo de Otorgamiento de crédito en un Banco con Random Forest Classifier")
-st.markdown("Este modelo predice si sele otorga un crédito en base a diferentes características.")
+st.title("Modelo Predictivo  con Random Forest Classifier")
+st.markdown("Este modelo predice otorgar un crédito en base a diferentes características.")
 st.markdown("---")
 
 # ----------------------- Función para validar los campos del formulario----------------------------
@@ -108,7 +105,6 @@ with st.form("churn_form"):
         Sexo = st.selectbox("**Sexo**", Sexo_options)
         E_Civil= st.selectbox("**Estado civil**", E_Civil_options)
         Educacion= st.selectbox("**Nivel de instrucción**", Educacion_options)
-        Prioridad= st.selectbox("**Prioridad**", Prioridad_options)
         Lic_Conducir = st.selectbox("**Licencia de conducir**", Lic_Conducir_options)
         
     # ----------------------------------------- Boton de Predecir-------------------------------------------------
@@ -125,7 +121,6 @@ if predict_button and not error_flag:
         'Sexo': [Sexo],
         'E_Civil': [E_Civil],
         'Educacion': [Educacion],
-        'Prioridad': [Prioridad],
         'Lic_Conducir': [Lic_Conducir],
         'Edad': [Edad],
         'Tarjetas': [Tarjetas],
@@ -146,7 +141,7 @@ if predict_button and not error_flag:
     # Asignar salida y probabilidad según la clase predicha
     # En el script original: #Exited: 0 Cliente retenido;  1 Cliente cerró cuenta
     if class_predicted == 0:
-        outcome = "No otorga crédito"
+        outcome = "No se otorga crédito"
         probability_churn = probabilities_classes[0]
         style_result = 'background-color: lightgreen; font-size: larger;'
     else:
